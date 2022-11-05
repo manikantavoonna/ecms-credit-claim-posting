@@ -1,1 +1,2 @@
-/* Add application styles & imports to this file! */
+@import "~@ag-grid-community/core/dist/styles/ag-grid.css";
+@import "~@ag-grid-community/core/dist/styles/ag-theme-balham.css";/* Add application styles & imports to this file! */

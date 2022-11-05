@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
         "amountDemob": null, "numberRR": null, "numberRU": null, "numberEvent": null, "amountEvent": null, "numberLoanTricp": null, "amountLoanTricp": null, "numberLoanAcc": 60, "amountLoanAcc": 70
     }
     
-    registerForm: FormGroup;
     submitted = false;
 
     constructor() { }
