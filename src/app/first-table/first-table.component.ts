@@ -1,6 +1,6 @@
 import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import { Component, OnInit } from '@angular/core';
-import { settings } from './settings';
+import { settings } from '../settings';
 import {
   GridApi,
   GridReadyEvent

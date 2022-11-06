@@ -4,6 +4,6 @@
   Type anything to search across the tabular data <input type="text" id="filter-text-box" placeholder="Filter..."
     (input)="onFilterTextBoxChanged()" />
 </div>
-<ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-balham" [rowData]="rowData"
+<ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-balham" [rowData]="rowData"
   [columnDefs]="columnDefs" [modules]="modules" [gridOptions]="gridOptionsTest" (gridReady)="onGridReady($event)">
 </ag-grid-angular>
