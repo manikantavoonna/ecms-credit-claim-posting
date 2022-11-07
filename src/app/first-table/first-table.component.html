@@ -1,4 +1,24 @@
-<h1>First Table</h1>
+<h1>
+  Global Filter for all three tables
+</h1>
+<div>
+
+  <label for="sttlmDtStart">STTLM Start Date: &nbsp;</label>
+  <input [(ngModel)]="filter.sttlmDtStart" type="date" id="sttlmDtStart" name="sttlmDtStart">
+  <label for="sttlmDtEnd">STTLM End Date: &nbsp;</label>
+  <input [(ngModel)]="filter.sttlmDtEnd" type="date" id="sttlmDtEnd" name="sttlmDtEnd">
+  <label for="creDtTmStart">CRED Start Date: &nbsp;</label>
+  <input [(ngModel)]="filter.creDtTmStart" type="date" id="creDtTmStart" name="creDtTmStart">
+  <label for="creDtTmEnd">CRED End Date: &nbsp;</label>
+  <input [(ngModel)]="filter.creDtTmEnd" type="date" id="creDtTmEnd" name="creDtTmEnd">
+  <button (click)="submit()">Submit</button>
+</div>
+<div>
+  <h3>Filter Data</h3>
+  {{filter | json}}
+</div>
+
+<!-- <h1>First Table</h1> -->
 
 <div class="example-header">
   Type anything to search across the tabular data <input type="text" id="filter-text-box" placeholder="Filter..."
