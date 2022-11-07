@@ -1,6 +1,7 @@
 import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import { Component, OnInit } from '@angular/core';
 import { settings } from '../settings';
+import { HttpClient } from '@angular/common/http';
 import {
   GridApi,
   GridReadyEvent
@@ -13,6 +14,16 @@ import { MockData } from '../mock-data';
   styleUrls: ['./first-table.component.css']
 })
 export class FirstTableComponent implements OnInit {
+  filter = {
+    sttlmDtStart: null,
+    sttlmDtEnd: null,
+    creDtTmStart: null,
+    creDtTmEnd: null,
+    ccref: null, // input box
+    instrSts: null, //input box
+    msgid: null, // input box
+    oblgref: null // input box
+  }
   columnDefs = [
     // { headerName: 'Make', field: 'make' },
     // { headerName: 'Model', field: 'model' },
@@ -53,10 +64,25 @@ export class FirstTableComponent implements OnInit {
   gridApi: GridApi;
 
   constructor(
+    private http: HttpClient
     // private mockData: MockData
   ) { }
 
   ngOnInit() {
+    this.getReq('http://localhost:8080/creditparams').subscribe((data: any) => {
+      console.log(data);
+      if (data['messsage'] == 'Record Exist') {
+        // this.dataExist = true;
+        this.getData();
+        // console.log(this.ecmsData);
+      } else {
+        // this.dataExist = false;
+      }
+    },
+      (error) => {
+        console.log(error);
+      }
+    );
     // this.mockData.getTable1data().subscribe((table1Data: any[]) => {
     //   console.log(table1Data);
     //   // this.schools = schools;
@@ -68,6 +94,17 @@ export class FirstTableComponent implements OnInit {
 
   }
 
+  getData() {
+    this.getReq('http://localhost:8080/creditclaim').subscribe((data: any) => {
+      // this.ecmsData = data;
+      // console.log(this.ecmsData);
+    });
+  }
+
+  getReq(url) {
+    return this.http.get(url, { params: this.filter });
+  }
+
   onFilterTextBoxChanged() {
     this.gridApi.setQuickFilter(
       (document.getElementById('filter-text-box') as HTMLInputElement).value
@@ -75,6 +112,25 @@ export class FirstTableComponent implements OnInit {
   }
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
+  }
+
+  onPrintQuickFilterTexts() {
+    this.gridApi.forEachNode(function (rowNode, index) {
+      console.log(
+        'Row ' +
+        index +
+        ' quick filter text is ' +
+        rowNode.quickFilterAggregateText
+      );
+    });
+  }
+  dateSelected(e) {
+    console.log(e);
+  }
+
+  submit() {
+    const url = 'http://localhost:8080:/loanshistory';
+    this.getReq(url);
   }
 
 }
